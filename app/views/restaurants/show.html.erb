@@ -2,16 +2,19 @@
   <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
+  <h2><%= @restaurant.name %></h2>
 </p>
 
 <p>
-  <strong>Address:</strong>
   <%= @restaurant.address %>
 </p>
 
 <p>
+  <!-- <strong>Website:</strong> -->
+  <%= link_to @restaurant.url, @restaurant.url %> 
+</p>
+
+<!-- <p>
   <strong>Latitude:</strong>
   <%= @restaurant.latitude %>
 </p>
@@ -19,18 +22,16 @@
 <p>
   <strong>Longitude:</strong>
   <%= @restaurant.longitude %>
-</p>
+</p> -->
 
-<p>
-  <strong>Url:</strong>
-  <%= @restaurant.url %>
-</p>
-
-<p>
+<!-- <p>
   <strong>Menu:</strong>
   <%= @restaurant.menu %>
-</p>
+</p> -->
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+  <%= link_to 'Back', restaurants_path %>
+<% end %>
+
 </div>
