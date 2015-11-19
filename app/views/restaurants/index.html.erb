@@ -18,14 +18,14 @@
     <tbody>
       <% @restaurants.each do |restaurant| %>
         <tr>
-          <td><%= link_to restaurant.name, restaurant.url %></td>
+          <td><%= link_to restaurant.name, restaurant %></td>
           <td><%= restaurant.address %></td>
           <td><%= restaurant.latitude %></td>
           <td><%= restaurant.longitude %></td>
-          <td><%= restaurant.url %></td>
+          <td><%= link_to restaurant.url, restaurant.url %></td>
           <td><%= restaurant.menu %></td>
         <% if user_signed_in? %>
-          <td><%= link_to 'Show', restaurant %></td>
+          
           <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
           <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
