@@ -28,11 +28,24 @@
   <strong>Menu:</strong>
   <%= @restaurant.menu %>
 </p> -->
+<br>
+<br>
+<br>
+
+<h4>Nearby Restaurants You Might Want to Try</h4>
+<ul>
+  <% for restaurant in @restaurant.nearbys(5) %>
+    <li><%= link_to restaurant.name, restaurant %> (<%= restaurant.distance.round(2) %> miles)</li>
+  <% end %>
+</ul>
+
+<br>
 
 <% if user_signed_in? %>
   <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <% end %>  
   <%= link_to 'Back', restaurants_path %>
+
 
 
 </div>

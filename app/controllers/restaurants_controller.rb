@@ -5,7 +5,11 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all.order('name ASC')
+    if params[:search].present?
+      @restaurants = Restaurant.near(params[:search], 15)
+    else
+      @restaurants = Restaurant.all.order('name ASC')
+    end
   end
 
   # GET /restaurants/1
