@@ -12,10 +12,10 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.all.order('name ASC')
     end
 
-      @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
         marker.lat restaurant.latitude
         marker.lng restaurant.longitude
-        marker.infowindow restaurant.name
+        marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + restaurant.url + "'>Website</a>" 
       end   
   end
 

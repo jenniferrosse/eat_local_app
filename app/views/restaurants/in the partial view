@@ -1,0 +1,17 @@
+in the partial view
+	you've got a ruby loop
+	 <% @restaurants.each do |restaurant| %>
+	 	you wanna build your json_array variable for the JS
+			 		var json_array = [
+		    { lat: 40, lng: -80, name: 'Foo', infowindow: "I'm Foo" },
+		    { lat: 45, lng: -90, name: 'Bar', infowindow: "I'm Bar" },
+		    { lat: 50, lng: -85, name: 'Baz', infowindow: "I'm Baz" }
+		  ];
+
+
+
+
+		  var json_array = "["
+<% @restaurants.each do |restaurant| %>
+		  json_array += "{lat: <%restaurant.lat%>, lng:<%restaurant.lng%>},""
+		  json_array += "]"
