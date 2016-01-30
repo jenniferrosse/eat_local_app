@@ -71,11 +71,11 @@
 <br>
 <br>
 
- <div class="container"> 
+<div class="container"> 
 
     <% @restaurants.each do |restaurant| %>
       
-        <p><%= link_to restaurant.name, restaurant %></br>
+        <%= link_to restaurant.name, restaurant %></br>
         <%= restaurant.address %></br>
       <% if user_signed_in? %>
         <%= restaurant.latitude %></br>
@@ -85,8 +85,8 @@
         <%= restaurant.menu %></br>
       <% if user_signed_in? %>
         
-        <%= link_to 'Edit', edit_restaurant_path(restaurant) %> |
-        <%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
+        <%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
 
     <% end %>

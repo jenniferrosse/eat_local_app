@@ -71,25 +71,42 @@
 <br>
 <br>
 
- <div class="container"> 
-
-    <% @restaurants.each do |restaurant| %>
-      
-        <p><%= link_to restaurant.name, restaurant %></br>
-        <%= restaurant.address %></br>
+ <div class="table-responsive"> 
+  <table class="table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
       <% if user_signed_in? %>
-        <%= restaurant.latitude %></br>
-        <%= restaurant.longitude %></br>
+        <th>Latitude</th>
+        <th>Longitude</th>
       <% end %>
-        <%= link_to restaurant.url, restaurant.url %></br>
-        <%= restaurant.menu %></br>
-      <% if user_signed_in? %>
-        
-        <%= link_to 'Edit', edit_restaurant_path(restaurant) %> |
-        <%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-      <% end %>
+        <th>Website</th>
+        <th>Menu</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-    <% end %>
+    <tbody>
+      <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td><%= link_to restaurant.name, restaurant %></td>
+          <td><%= restaurant.address %></td>
+        <% if user_signed_in? %>
+          <td><%= restaurant.latitude %></td>
+          <td><%= restaurant.longitude %></td>
+        <% end %>
+          <td><%= link_to restaurant.url, restaurant.url %></td>
+          <td><%= restaurant.menu %></td>
+        <% if user_signed_in? %>
+          
+          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+          <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <br>
