@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EatLocalApp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">	
+  </head>
+  <body>
+
+    <div class="container-fluid">
+
+      <div class="row-fluid">
+        <div class="span12">
+          <%= render partial: "shared/navbar" %>
+        </div>
+      </div>
+
+    
+
+      <% if notice %>
+      	<p class="notice"><%= notice %></p>
+      <% elsif alert %>
+      	<p class="alert"><%= alert %></p>
+      <% end %>
+
+      <div class="row-fluid">
+        <div class="span9">
+            <%= yield %>           
+        </div>
+
+        <div class="span3"> 
+           <%= yield :contextual %>
+        </div>
+        
+          <p> 
+              &copy; 2016 eat local chicago |
+              <a href="mailto:jenniferrosse26@gmail.com" target="_blank">contact</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

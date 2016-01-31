@@ -1,0 +1,21 @@
+
+
+
+
+    <% @restaurants.each do |restaurant| %>
+      
+        <p><%= restaurant.name%></br>
+        <%= restaurant.address %></br>
+      <% if user_signed_in? %>
+        <%= restaurant.latitude %></br>
+        <%= restaurant.longitude %></br>
+      <% end %>
+        <%= link_to restaurant.url, restaurant.url %></br>
+        <%= link_to "Menu", restaurant.menu %></br>
+      <% if user_signed_in? %>
+        
+        <%= link_to 'Edit', edit_restaurant_path(restaurant) %> |
+        <%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      <% end %>
+
+    <% end %>
