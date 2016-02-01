@@ -7,7 +7,7 @@ class RestaurantsController < ApplicationController
   def index
 
     if params[:search].present?
-       @restaurants = Restaurant.near(params[:search], 15)
+       @restaurants = Restaurant.near(params[:search], 10)
     else
       @restaurants = Restaurant.all.order('name ASC')
     end

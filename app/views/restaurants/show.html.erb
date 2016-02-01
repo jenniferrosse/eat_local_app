@@ -30,11 +30,16 @@
         id: 'geolocation'
       } 
     }, 
+    function(){
+      if(navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(displayOnMap);
+    }
+  );
 
-  function (){
+  function displayOnMap(position){
     var marker = handler.addMarker({
-      marker.lat restaurant.latitude,
-      marker.lng restaurant.longitude
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
     });
     handler.map.centerOn(marker);
   };
