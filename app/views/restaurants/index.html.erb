@@ -66,23 +66,33 @@
     </div>
 
     <div class="col-xs-6 col-md-4 col-lg-3">
-      <h2>Hey user!</h2>
-      <p> Here is a list of Chicago (and suburban) restaurants that source from local farms.</p> 
-      <h5>Blue = you!</h5>
-      <p>Find restaurants closest to you by looking for the blue marker (make sure you click 'allow'). 
+      <h4>Farm-to-Table Restaurants<br> 
+        Close to You</h4>
 
-      <p>Or enter an address below to sort the restaurants in order from closest to farthest. <p>
-      <p>*If map is not rendering, refresh the page.</p>
+<button onclick="myFunction()">Need Help?</button>
 
-      <%= form_tag restaurants_path, :method => :get do %>
+<script>
+function myFunction() {
+    alert("Make sure that your location services are on and that you clicked allow so we can use them. If the map is not rendering, refresh the page.");
+}
+</script>
+
+     <br>
+     <br>
+
+
+      <%= render 'home_side' %>
+    <br>
+    <br>
+    
+<p>Or enter a location to search near a specific place.</p>
+     <%= form_tag restaurants_path, :method => :get do %>
         <p>
           <%= text_field_tag :search, params[:search] %>
           <%= submit_tag "Search Near", :name => nil %>
         </p>
       <% end %>
-
-      <%= render 'home_side' %>
-    </div>
+      </div>
   </div>
 <br>
 <br> 
