@@ -1,7 +1,7 @@
 
     <% @restaurants.each do |restaurant| %>
       
-        <p><%= link_to restaurant.name, restaurant.url %> (<%= restaurant.distance.round(2) %> miles)</br>
+        <p><%= link_to restaurant.name, restaurant.url %> </br>
         <%= restaurant.address %></br>
       <% if user_signed_in? %>
         <%= restaurant.latitude %></br>
