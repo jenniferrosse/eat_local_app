@@ -5,12 +5,20 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
+ 
 
-    if params[:search].present?
-       @restaurants = Restaurant.near(params[:search], 15)
-    else
-      @restaurants = Restaurant.all.order('name ASC')
-    end
+    @geocoder_result = request.location #gets the ip of the user
+    # @searchResults = Geocoder.search(search_locations)
+    @restaurants = Restaurant.near([@geocoder_result.latitude, @geocoder_result.longitude], 50)
+
+    # if params[:search].present?
+    #    # @restaurants = Restaurant.near(params[:search], 15)
+    # # elsif @userLocation #some code to check
+    # #   # @restaurants = Restaurant.near(@userLocation, 15)
+    # #   @restaurants = Restaurant.all.sort_by { |r| Geocoder::Calculations.distance_between(@userLocation, [r.latitude, r.longitude]) }
+    # else
+    #   # @restaurants = Restaurant.all.order('name ASC')
+    # end
 
       @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
         marker.lat restaurant.latitude
