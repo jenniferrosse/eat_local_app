@@ -17,7 +17,10 @@ class RestaurantsController < ApplicationController
     # #   # @restaurants = Restaurant.near(@userLocation, 15)
     # #   @restaurants = Restaurant.all.sort_by { |r| Geocoder::Calculations.distance_between(@userLocation, [r.latitude, r.longitude]) }
     # else
-  @restaurants = Restaurant.all.order('name ASC')
+
+location_info = request.location
+@restaurants = Restaurant.near([location_info.latitude, location_info.longitude], 20)
+  #@restaurants = Restaurant.all.order('name ASC')
     # end
 
       @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
