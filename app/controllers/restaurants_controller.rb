@@ -1,12 +1,17 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin!, except: [:index, :show, :new]
 
   # GET /restaurants
   # GET /restaurants.json
-  def index
- 
+  
+#added from restaurants helper, not sure where this should go or how to get the link to restaurant to open in another window. 
+  def url_with_protocol(url)
+    /^http/i.match(url) ? url : "http://#{url}"
+  end
 
+  def index
     #@geocoder_result = request.location #gets the ip of the user
    
     #@restaurants = Restaurant.near([@geocoder_result.latitude, @geocoder_result.longitude], 50)
@@ -23,7 +28,7 @@ class RestaurantsController < ApplicationController
       @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
         marker.lat restaurant.latitude
         marker.lng restaurant.longitude
-        marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + restaurant.url + "'target='_blank'>Website</a>"
+        marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
       end   
   end
 

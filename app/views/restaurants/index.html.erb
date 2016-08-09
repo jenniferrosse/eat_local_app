@@ -12,6 +12,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-8 col-lg-9">
+      <h2>Find Restaurants that Source From Local Farms<br></h2>
                
       <div class="map_container">
         <div id="map_canvas" class="map_canvas"></div>
@@ -66,20 +67,15 @@
     </div>
 
     <div class="col-xs-6 col-md-4 col-lg-3">
-      <h4>Farm-to-Table Restaurants<br> 
-        Close to You</h4>
+      
 
-<button onclick="myFunction()">Need Help?</button>
 
-<script>
-function myFunction() {
-    alert("Make sure that your location services are on and that you clicked allow so we can use them. If the map is not rendering, refresh the page.");
-}
-</script>
 
      <br>
      <br>
-
+     <button class="btn btn-default" type="submit"><%= link_to 'Add A Restaurant', new_restaurant_path %></button>
+     <br> 
+     <br>
 
       <%= render 'home_side' %>
     <br>
@@ -99,8 +95,11 @@ function myFunction() {
 <br> 
 <br>
 
-<% if user_signed_in? %>
-  <%= link_to 'New Restaurant', new_restaurant_path %>
-<% end %>
+<button onclick="myFunction()">Need Help?</button>
 
+<script>
+function myFunction() {
+    alert("Make sure that your location services are on and that you clicked allow so we can use them. If the map is not rendering, refresh the page.");
+}
+</script>
 </div>
