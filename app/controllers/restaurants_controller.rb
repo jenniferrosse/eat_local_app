@@ -25,16 +25,22 @@ class RestaurantsController < ApplicationController
   @restaurants = Restaurant.all.order('name ASC')
     # end
 
-      @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
-        marker.lat restaurant.latitude
-        marker.lng restaurant.longitude
-        marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
-      end   
+    @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+    end   
   end
 
   # GET /restaurants/1
   # GET /restaurants/1.json
-  def show   
+  def show
+  @restaurant = Restaurant.find(params[:id])
+    @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+    end    
     
   end
 
