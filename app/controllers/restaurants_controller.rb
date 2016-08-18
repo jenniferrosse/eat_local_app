@@ -39,6 +39,7 @@ class RestaurantsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
+      #                 <a href="/restaurants/7">  </a>
       marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
     end    
     
