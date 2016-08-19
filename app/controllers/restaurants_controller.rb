@@ -12,9 +12,9 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    #@geocoder_result = request.location #gets the ip of the user
+    #geocoder_result = request.location #gets the ip of the user
    
-    #@restaurants = Restaurant.near([@geocoder_result.latitude, @geocoder_result.longitude], 50)
+    #restaurants = Restaurant.near([@geocoder_result.latitude, @geocoder_result.longitude], 50)
 
     # if params[:search].present?
     #    # @restaurants = Restaurant.near(params[:search], 15)
@@ -29,7 +29,13 @@ class RestaurantsController < ApplicationController
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
       marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
-    end   
+    end
+    if @arrayOfRestaurants.empty?
+      @arrayOfRestaurants.push({
+        lat: current_user.latitude,
+        lng: current_user.longitude
+      })
+end   
   end
 
   # GET /restaurants/1
