@@ -26,9 +26,10 @@ class RestaurantsController < ApplicationController
     # end
 
     @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
-      marker.infowindow restaurant.name + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+      marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
     end
     if @arrayOfRestaurants.empty?
       @arrayOfRestaurants.push({
