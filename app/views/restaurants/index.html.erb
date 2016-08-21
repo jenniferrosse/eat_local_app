@@ -36,7 +36,7 @@
                 width:  36,
                 height: 36
               },
-              infowindow: "You are here!"
+              infowindow: "This is you!"
             });
             handler.bounds.extendWith(markers);
             handler.fitMapToBounds();
@@ -51,12 +51,22 @@
 
         addCurrentLocation();
       </script>
- 
+
      <br>
      <br>
      <button class="btn btn-default" type="submit"><%= link_to 'Add A Restaurant', new_restaurant_path %></button>
      <br> 
      <br>
+
+
+
+<%= form_tag restaurants_path, :method => :get do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+     
+          <%= submit_tag "Search Near", :name => nil %>
+        </p>
+      <% end %>
 
 
 <table class="table table-hover">
@@ -91,13 +101,6 @@
 
     
 <p>Or enter a location to search near a specific place.</p>
-     <%= form_tag restaurants_path, :method => :get do %>
-        <p>
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search Near", :name => nil %>
-        </p>
-      <% end %>
-
   
   </div>
 <br>

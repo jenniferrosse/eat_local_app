@@ -12,31 +12,39 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    #geocoder_result = request.location #gets the ip of the user
+    
    
     #restaurants = Restaurant.near([@geocoder_result.latitude, @geocoder_result.longitude], 50)
 
-    # if params[:search].present?
-    #    # @restaurants = Restaurant.near(params[:search], 15)
+   
     # # elsif @userLocation #some code to check
     # #   # @restaurants = Restaurant.near(@userLocation, 15)
     # #   @restaurants = Restaurant.all.sort_by { |r| Geocoder::Calculations.distance_between(@userLocation, [r.latitude, r.longitude]) }
     # else
-  @restaurants = Restaurant.all.order('name ASC')
-    # end
+
+    #if params[:location].present?
+      #@restaurants = Restaurant.near(params[:location], params[:distance] || 10, order: :distance)
+     #else
+    #@desired_location = params[:search](trying to make flash error if box is left blank)
+
+    #@user_location = request.location #gets the location of the user ip
+    #@search_results = Geocoder.seach(search_locations)
+    #[current_user.latitude, current_user.longitude]
+
+    if params[:search].present?
+     @restaurants = Restaurant.near(params[:search], 15)
+    #elsif location.present?
+     # @restaurants = Restaurant.near([user_location.latitude, user_location.longitude], 50, order: :distance)
+    else
+     @restaurants = Restaurant.all.order('name ASC')
+    end
 
     @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
       marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
-    end
-    if @arrayOfRestaurants.empty?
-      @arrayOfRestaurants.push({
-        lat: current_user.latitude,
-        lng: current_user.longitude
-      })
-end   
+    end  
   end
 
   # GET /restaurants/1
