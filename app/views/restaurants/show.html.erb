@@ -7,25 +7,43 @@
       <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
     <% end %>  
     <%= link_to 'Back', restaurants_path %>
-  </p>
-  <p>
-    <h2><%= @restaurant.name %></h2>
-  <p>
 
-  <p>
-    <%= @restaurant.address %>
   </p>
 
-  <p>
-    <!-- <strong>Website:</strong> -->
-    <%= link_to @restaurant.url, url_with_protocol(@restaurant.url), :target => '_blank' %> 
-  </p>
+  <div class="row">
+    <div class="col-md-4">
+      <p>
+        <h2><%= @restaurant.name %></h2>
+      <p>
 
-  <div class="map_container">
-    <div id="map_canvas" class="map_canvas"></div>
-  </div>
+      <p>
+        <%= @restaurant.address %>
+      </p>
 
-      
+      <p>
+        <!-- <strong>Website:</strong> -->
+        <%= link_to @restaurant.url, url_with_protocol(@restaurant.url), :target => '_blank' %> 
+      </p>
+      <br>
+  <br>
+  <br>
+
+  <h4>Nearby Restaurants You Might Want to Try</h4>
+  <ul>
+    <% for restaurant in @restaurant.nearbys(5) %>
+      <li><%= link_to restaurant.name, restaurant %> (<%= restaurant.distance.round(2) %> miles)</li>
+    <% end %>
+  </ul>
+
+  <br>
+    </div>
+    <div class="col-md-8">
+      <div class="map_container">
+        <div id="map_canvas" class="map_canvas"></div>
+      </div>
+    </div>
+</div>     
+
  <script type="text/javascript">
         var handler = Gmaps.build('Google');
         handler.buildMap({
@@ -40,10 +58,35 @@
             markers = handler.addMarkers(<%=raw @hash.to_json %>);
             handler.bounds.extendWith(markers);
             handler.fitMapToBounds();
-            handler.getMap().setZoom(15);
+            handler.getMap().setZoom(14);
           }
         );
+        // adds the users current location based on browser GPS
+        function addCurrentLocation() {
 
+          function displayOnMap(position){
+            var marker = handler.addMarker({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+              picture: {
+                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                width:  36,
+                height: 36
+              },
+              infowindow: "This is you!"
+            });
+            //handler.bounds.extendWith(markers);
+            //handler.fitMapToBounds();
+            // handler.map.centerOn(marker);
+          };
+
+          if(navigator && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(displayOnMap);  
+          }
+
+        }
+
+        addCurrentLocation();
 
     
       </script>
@@ -64,17 +107,6 @@
     <strong>Menu:</strong>
     <%= @restaurant.menu %>
   </p> -->
-  <br>
-  <br>
-  <br>
-
-  <h4>Nearby Restaurants You Might Want to Try</h4>
-  <ul>
-    <% for restaurant in @restaurant.nearbys(5) %>
-      <li><%= link_to restaurant.name, restaurant %> (<%= restaurant.distance.round(2) %> miles)</li>
-    <% end %>
-  </ul>
-
-  <br>
+  
 
 </div>

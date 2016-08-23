@@ -12,7 +12,7 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    
+
    
     #restaurants = Restaurant.near([@geocoder_result.latitude, @geocoder_result.longitude], 50)
 
