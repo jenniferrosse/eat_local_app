@@ -3,7 +3,7 @@
  -->
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-6 col-md-4 col-md-offset-3">
       <%= form_tag restaurants_path, :method => :get do %>
         <p>
           <%= text_field_tag :search, params[:search] %>
@@ -12,14 +12,14 @@
         </p>
       <% end %>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6 col-md-4">
       <button class="btn btn-default" type="submit"><%= link_to 'Add A Restaurant', new_restaurant_path %></button>
     </div>
   </div>
 
   <div class="row">
     <div style='width: 100%;'>
-      <div id="map_canvas" style='width: 100%; height: 400px;'></div>
+      <div id="map_canvas" style='width: 100%; height: 500px;'></div>
     </div>
   </div>
       <script type="text/javascript">
@@ -67,6 +67,7 @@
         addCurrentLocation();
       </script>
 
+<br>
 <table class="table table-hover">
   <thead>
     <tr>
