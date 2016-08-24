@@ -14,16 +14,18 @@
   	
 </head>
 <body>
+  <div class="wrapper">
+    <%= render partial: "shared/navbar" %>
 
-<%= render partial: "shared/navbar" %>
+    <div class="container">
+      <%= flash_messages %>
+    </div>
 
-<% if notice %>
-	<p class="notice"><%= notice %></p>
-<% elsif alert %>
-	<p class="alert"><%= alert %></p>
-<% end %>
+    <%= yield %>
+     <div class="push"></div>
+  </div>
 
-<%= yield %>
+  <%= render partial: "shared/footer" %>
 
 </body>
 </html>
