@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
 controller :pages do
   # get :home
-  # get :about
+  get :about
   get :contact
 end
 
