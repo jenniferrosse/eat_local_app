@@ -20,16 +20,12 @@
       <%= f.text_field :address %>
     </div>
    
-   
     <div class="field">
-      <%= f.label :url %><br>
+      <%= f.label :url, "Website" %><br>
       <%= f.text_field :url %>
     </div>
-    <div class="field">
-      <%= f.label :menu %><br>
-      <%= f.text_field :menu %>
-    </div>
+    <br>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit class: "btn btn-default" %>
     </div>
   <% end %>

@@ -30,7 +30,7 @@
 
   <h4>Nearby Restaurants You Might Want to Try</h4>
   <ul>
-    <% for restaurant in @restaurant.nearbys(5) %>
+    <% for restaurant in @restaurant.nearbys(5).limit(10) %>
       <li><%= link_to restaurant.name, restaurant %> (<%= restaurant.distance.round(2) %> miles)</li>
     <% end %>
   </ul>
