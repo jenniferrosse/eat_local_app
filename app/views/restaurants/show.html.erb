@@ -25,12 +25,10 @@
         <%= link_to @restaurant.url, url_with_protocol(@restaurant.url), :target => '_blank' %> 
       </p>
       <br>
-  <br>
-  <br>
 
   <h4>Nearby Restaurants You Might Want to Try</h4>
   <ul>
-    <% for restaurant in @restaurant.nearbys(5).limit(10) %>
+    <% for restaurant in @restaurant.nearbys(5).limit(15) %>
       <li><%= link_to restaurant.name, restaurant %> (<%= restaurant.distance.round(2) %> miles)</li>
     <% end %>
   </ul>
