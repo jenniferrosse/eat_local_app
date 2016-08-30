@@ -27,14 +27,14 @@ class RestaurantsController < ApplicationController
      #else
     #@desired_location = params[:search](trying to make flash error if box is left blank)
 
-    #@user_location = request.location #gets the location of the user ip
+    #@user_location = location #gets the location of the user ip
     #@search_results = Geocoder.seach(search_locations)
     #[current_user.latitude, current_user.longitude]
 
     if params[:search].present?
      @restaurants = Restaurant.near(params[:search], 15)
-    #elsif location.present?
-     #@restaurants = Restaurant.near([user_location.latitude, user_location.longitude], 50, order: :distance)
+    elsif location.present?
+     @restaurants = Restaurant.near([location.latitude, location.longitude], 50)
     else
      @restaurants = Restaurant.all.order('name ASC')
     end
