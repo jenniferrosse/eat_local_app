@@ -35,8 +35,13 @@
           },
           function(){
             markers = handler.addMarkers(<%=raw @arrayOfRestaurants.to_json %>);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
+            //handler.bounds.extendWith(markers);
+            //handler.fitMapToBounds();
+            handler.map.centerOn([41.87, -87.62]);
+
+            // handler.getMap() is the google map object
+            // you can also access it with handler.map.getServiceObject()
+            handler.getMap().setZoom(9);
           }
         );
 
@@ -53,10 +58,10 @@
                 height: 36
               },
               infowindow: "This is you!",
-            
+              
             });
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
+            //handler.bounds.extendWith(markers);
+            //handler.fitMapToBounds();
             // handler.map.centerOn(marker);
           };
 
@@ -89,7 +94,9 @@
         <td><%= restaurant.address %></td>
         <td><%= restaurant.distance.round(2) %> miles</td>
         
-      
+      <% if user_signed_in? %>
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+      <% end %>
       <% if admin_signed_in? %>
         <td><%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
