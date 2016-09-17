@@ -34,7 +34,7 @@ class RestaurantsController < ApplicationController
     if params[:search].present?
      @restaurants = Restaurant.near(params[:search], 15)
     elsif location.present?
-     @restaurants = Restaurant.near([location.latitude, location.longitude], 1500)
+     @restaurants = Restaurant.near([location.latitude, location.longitude], 2500)
     else
      @restaurants = Restaurant.all.order('name ASC')
     end
