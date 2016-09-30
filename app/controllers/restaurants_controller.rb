@@ -12,8 +12,6 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-
-   
     #restaurants = Restaurant.near([@geocoder_result.latitude, @geocoder_result.longitude], 50)
 
    
@@ -45,6 +43,16 @@ class RestaurantsController < ApplicationController
       marker.lng restaurant.longitude
       marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
     end  
+  end
+
+  def restaurant_list
+    if params[:search].present?
+     @restaurants = Restaurant.near(params[:search], 15)
+    elsif location.present?
+     @restaurants = Restaurant.near([location.latitude, location.longitude], 2500)
+    else
+     @restaurants = Restaurant.all.order('name ASC')
+    end
   end
 
   # GET /restaurants/1

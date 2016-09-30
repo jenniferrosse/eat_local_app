@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :restaurants
 
+controller :restaurants do
+  get :restaurant_list
+end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -12,9 +15,12 @@ Rails.application.routes.draw do
 
 controller :pages do
   # get :home
+  get :home
   get :about
   get :contact
 end
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
