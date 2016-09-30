@@ -5,4 +5,8 @@ class Restaurant < ActiveRecord::Base
 
 	geocoded_by :address
 	after_validation :geocode, :if => :address_changed?
+
+  # def self.search(search)
+  # where("name ILIKE ? OR address ILIKE ? OR website ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  # end
 end

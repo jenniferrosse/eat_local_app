@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
-  resources :restaurants
+  resources :restaurants do
+    collection do
+      get 'search'
+    end
+  end
 
 controller :restaurants do
   get :restaurant_list
