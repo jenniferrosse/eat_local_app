@@ -27,7 +27,9 @@
         handler = Gmaps.build('Google');
         handler.buildMap({
             provider: {
-              // pass in other Google Maps API options here
+              disableDefaultUI: true,
+              scaleControl: true,
+              zoomControl: true
             },
             internal: {
               id: 'map_canvas'
