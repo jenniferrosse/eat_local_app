@@ -21,6 +21,7 @@ controller :pages do
   # get :home
   get :home
   get :about
+  get :coming_soon
   get :contact
 end
 

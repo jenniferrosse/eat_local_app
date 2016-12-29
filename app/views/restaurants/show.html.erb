@@ -20,7 +20,8 @@
 
       <p>
         <!-- <strong>Website:</strong> -->
-        <%= link_to @restaurant.url, url_with_protocol(@restaurant.url), :target => '_blank' %> 
+        <%= link_to "Visit Website", url_with_protocol(@restaurant.url), class: "btn btn-success btn-sm sharp", :target => '_blank' %> 
+
       </p>
       <br>
 

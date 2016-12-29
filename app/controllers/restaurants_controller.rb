@@ -5,6 +5,14 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants
   # GET /restaurants.json
+
+  def city_search
+    if params[:city_search].present?
+        @restaurants = Restaurant.search(params[:city_search])
+    else
+        @restaurants = Restaurant.all
+    end
+  end
   
 #added from restaurants helper, not sure where this should go or how to get the link to restaurant to open in another window. 
   def url_with_protocol(url)

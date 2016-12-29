@@ -22,6 +22,26 @@
     <div style='width: 100%;'>
       <div id="map_canvas" style='width: 100%; height: 500px;'></div>
     </div>
+    <div class="restaurant-list">
+      <% @restaurants.each do |restaurant| %>
+
+        <h2><%= restaurant.name %></h2>
+        <h4><%= restaurant.distance.round(2) %> miles</h4>
+
+        <%= restaurant.address %><br>
+        <br>
+        <%= link_to "More Info", restaurant_path(restaurant), class: "btn btn-success btn-sm sharp" %>
+        <%= link_to "Visit Website", url_with_protocol(restaurant.url), class: "btn btn-success btn-sm sharp", :target => '_blank' %>
+          
+        <% if user_signed_in? %>
+          <%= link_to 'Edit', edit_restaurant_path(restaurant),class: "btn btn-success btn-sm sharp" %><br>
+        <% end %>
+        <% if admin_signed_in? %>
+          <%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+        <% end %>
+        <hr>
+      <% end %>
+    </div>  
   </div>
       <script type="text/javascript">
         handler = Gmaps.build('Google');
@@ -80,11 +100,5 @@
 <br> 
 <br>
 
-<button onclick="myFunction()">Need Help?</button>
 
-<script>
-function myFunction() {
-    alert("Make sure that your location services are on and that you clicked allow so we can use them. If the map is not rendering, refresh the page.");
-}
-</script>
 </div>
