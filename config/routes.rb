@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
 controller :restaurants do
   get :restaurant_list
+  get :restaurants_atlanta
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
