@@ -26,7 +26,19 @@
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li> -->
-        <li><%= link_to "View Map", restaurants_path %></li>
+        <li><%= link_to "Search Chicago", restaurants_chicago_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Other Cites <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Atlanta", restaurants_atlanta_path %></li>
+            <li><%= link_to "New Orleans", restaurants_new_orleans_path %></li>
+            <li><%= link_to "Seattle", restaurants_seattle_path %></li>
+            <li><%= link_to "Tampa", restaurants_tampa_path %></li>
+            <li><%= link_to "Tucson", restaurants_tucson_path %></li>
+          </ul>
+        </li>
+
+
         <li><%= link_to "Contact", contact_path %></li>
         
         <% if user_signed_in? %>

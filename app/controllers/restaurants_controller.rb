@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :restaurants_chicago, :restaurants_atlanta, :restaurants_new_orleans, :restaurants_seattle, :restaurants_tampa, :restaurants_tucson]
   before_action :authenticate_admin!, only: [:destroy]
 
   # GET /restaurants
@@ -83,6 +83,65 @@ class RestaurantsController < ApplicationController
     end  
   end
 
+  def restaurants_new_orleans
+    if params[:search].present?
+     @restaurants = Restaurant.near(params[:search], 15)
+    else
+     @restaurants = Restaurant.all.order('name ASC')
+    end
+
+    @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+    end  
+  end
+
+  def restaurants_tucson
+    if params[:search].present?
+     @restaurants = Restaurant.near(params[:search], 15)
+    else
+     @restaurants = Restaurant.all.order('name ASC')
+    end
+
+    @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+    end  
+  end
+
+  def restaurants_seattle
+    if params[:search].present?
+     @restaurants = Restaurant.near(params[:search], 15)
+    else
+     @restaurants = Restaurant.all.order('name ASC')
+    end
+
+    @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+    end  
+  end
+
+  def restaurants_tampa
+    if params[:search].present?
+     @restaurants = Restaurant.near(params[:search], 15)
+    else
+     @restaurants = Restaurant.all.order('name ASC')
+    end
+
+    @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+    end  
+  end
   # def search
   #   if params[:search].present?
   #       @restaurants = Restaurant.search(params[:search])

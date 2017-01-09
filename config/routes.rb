@@ -11,6 +11,10 @@ controller :restaurants do
   get :restaurant_list
   get :restaurants_chicago
   get :restaurants_atlanta
+  get :restaurants_new_orleans
+  get :restaurants_seattle
+  get :restaurants_tampa
+  get :restaurants_tucson
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,98 @@
+
+<!-- # title would go here
+ -->
+<div class="container-fluid">
+  <div class="row">
+
+
+<div class="row">
+  <div class="col-md-1 col-md-offset-1">
+    <%= link_to "Search near me", restaurants_path, class: "btn btn-default sharp pull-right" %>
+  </div><!-- /.col-lg-6 -->
+  <div class="col-md-1 text-center">
+    OR
+  </div>
+  <div class="col-md-4">
+    <%= form_tag restaurants_path, :method => 'get', class: 'input-group'  do %>
+        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search near an address...' %>
+        <span class="input-group-btn">
+          <%= submit_tag "search", class: "btn btn-default sharp" %>
+        </span>
+      <% end %>
+    </div><!-- /input-group -->
+  
+  <div class="col-md-2">
+      <%= link_to new_restaurant_path, class: "btn btn-success" do %>
+        <span class="glyphicon glyphicon-plus"></span> Add a Restaurant
+      <% end %>
+    </div>
+</div><!-- /.row -->
+
+    
+  </div>
+<br>
+  <div class="row">
+    <div style='width: 100%;'>
+      <div id="map_canvas"></div>
+    </div>
+    
+  </div>
+      <script type="text/javascript">
+        handler = Gmaps.build('Google');
+        handler.buildMap({
+            provider: {
+              disableDefaultUI: true,
+              scaleControl: true,
+              zoomControl: true
+            },
+            internal: {
+              id: 'map_canvas'
+            }
+          },
+          function(){
+            markers = handler.addMarkers(<%=raw @arrayOfRestaurants.to_json %>);
+            //handler.bounds.extendWith(markers);
+            //handler.fitMapToBounds();
+            handler.map.centerOn([47.60, -122.33]);
+
+            // handler.getMap() is the google map object
+            // you can also access it with handler.map.getServiceObject()
+            handler.getMap().setZoom(11);
+          }
+        );
+
+        // adds the users current location based on browser GPS
+        function addCurrentLocation() {
+
+          function displayOnMap(position){
+            var marker = handler.addMarker({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+              picture: {
+                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                width:  36,
+                height: 36,
+              },
+              infowindow: "This is you!",
+              
+            });
+            //handler.bounds.extendWith(markers);
+            //handler.fitMapToBounds();
+            // handler.map.centerOn(marker);
+          };
+
+          if(navigator && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(displayOnMap);  
+          }
+
+        }
+
+        addCurrentLocation();
+      </script>
+  </div>
+<br>
+<br> 
+<br>
+
+
+</div>
