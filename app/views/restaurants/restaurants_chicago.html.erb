@@ -35,7 +35,28 @@
     <div style='width: 100%;'>
       <div id="map_canvas"></div>
     </div>
-    
+    <div class="restaurant-list">
+      <% @restaurants.each do |restaurant| %>
+
+        <h2><%= restaurant.name %></h2>
+        <% if restaurant.respond_to? :distance %>
+        <h4><%= restaurant.distance.round(2) %> miles</h4>
+        <% end %>
+
+        <%= restaurant.address %><br>
+        <br>
+        <%= link_to "More Info", restaurant_path(restaurant), class: "btn btn-success btn-sm sharp" %>
+        <%= link_to "Visit Website", url_with_protocol(restaurant.url), class: "btn btn-success btn-sm sharp", :target => '_blank' %>
+          
+        <% if user_signed_in? %>
+          <%= link_to 'Edit', edit_restaurant_path(restaurant),class: "btn btn-success btn-sm sharp" %><br>
+        <% end %>
+        <% if admin_signed_in? %>
+          <%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+        <% end %>
+        <hr>
+      <% end %>
+    </div>  
   </div>
       <script type="text/javascript">
         handler = Gmaps.build('Google');
@@ -53,7 +74,7 @@
             markers = handler.addMarkers(<%=raw @arrayOfRestaurants.to_json %>);
             //handler.bounds.extendWith(markers);
             //handler.fitMapToBounds();
-            handler.map.centerOn([33.74, -84.38]);
+            handler.map.centerOn([41.89, -87.94]);
 
             // handler.getMap() is the google map object
             // you can also access it with handler.map.getServiceObject()

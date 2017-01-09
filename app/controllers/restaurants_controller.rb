@@ -53,6 +53,21 @@ class RestaurantsController < ApplicationController
     end  
   end
 
+  def restaurants_chicago
+    if params[:search].present?
+     @restaurants = Restaurant.near(params[:search], 15)
+    else
+     @restaurants = Restaurant.all.order('name ASC')
+    end
+
+    @arrayOfRestaurants = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      restaurant_path = view_context.link_to restaurant.name, restaurant_path(restaurant)
+      marker.lat restaurant.latitude
+      marker.lng restaurant.longitude
+      marker.infowindow "<b>#{restaurant_path}</b>" + "<br>" + restaurant.address + "<br>" + "<a href='" + url_with_protocol(restaurant.url) + "'target='_blank'>" + restaurant.url + "</a>"
+    end  
+  end
+
   def restaurants_atlanta
     if params[:search].present?
      @restaurants = Restaurant.near(params[:search], 15)

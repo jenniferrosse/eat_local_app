@@ -74,11 +74,11 @@
             markers = handler.addMarkers(<%=raw @arrayOfRestaurants.to_json %>);
             //handler.bounds.extendWith(markers);
             //handler.fitMapToBounds();
-            handler.map.centerOn([41.89, -87.94]);
+            //handler.map.centerOn([41.89, -87.94]);
 
             // handler.getMap() is the google map object
             // you can also access it with handler.map.getServiceObject()
-            handler.getMap().setZoom(11);
+            //handler.getMap().setZoom(11);
           }
         );
 
@@ -99,7 +99,8 @@
             });
             //handler.bounds.extendWith(markers);
             //handler.fitMapToBounds();
-            // handler.map.centerOn(marker);
+            handler.map.centerOn(marker);
+            handler.getMap().setZoom(11);
           };
 
           if(navigator && navigator.geolocation) {
