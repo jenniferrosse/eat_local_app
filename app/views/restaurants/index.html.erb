@@ -39,9 +39,7 @@
       <% @restaurants.each do |restaurant| %>
 
         <h2><%= restaurant.name %></h2>
-        <% if restaurant.respond_to? :distance %>
         <h4><%= restaurant.distance.round(2) %> miles</h4>
-        <% end %>
 
         <%= restaurant.address %><br>
         <br>
@@ -106,7 +104,6 @@
           if(navigator && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(displayOnMap);  
           }
-
         }
 
         addCurrentLocation();
