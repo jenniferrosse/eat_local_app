@@ -1,49 +1,31 @@
 <div class="container">
-
-    
-  
-  <p>
-     
-    <%= link_to 'Back', restaurants_path %>
-
-  </p>
+  <p><%= link_to 'Back', restaurants_path, class: "btn btn-default" %></p>
 
   <div class="row">
     <div class="col-md-4">
-      <p>
+      <div class="row">
         <h2><%= @restaurant.name %></h2>
-      <p>
-
-      <p>
-        <%= @restaurant.address %>
-      </p>
-
-      <p>
-        <!-- <strong>Website:</strong> -->
-        <%= link_to "Visit Website", url_with_protocol(@restaurant.url), class: "btn btn-success btn-sm sharp", :target => '_blank' %> 
-
-      </p>
-      <br>
-
-  <h4>Nearby Restaurants You Might Want to Try</h4>
-  <ul>
-    <% for restaurant in @restaurant.nearbys(5).limit(17) %>
-      <li><%= link_to restaurant.name, restaurant %> (<%= restaurant.distance.round(2) %> miles)</li>
-    <% end %>
-  </ul>
-
-  <br>
-    </div>
-    <div class="col-md-8">
-      <br>
-      <br>
-      <br>
-      <div class="map_container">
-        <div id="map_canvas" class="map_canvas"></div>
+        <p><%= @restaurant.address %>
+        </p>
+        <p><%= link_to "Visit Website", url_with_protocol(@restaurant.url), class: "btn btn-success btn-sm sharp", :target => '_blank' %></p>
+        <br>
+      </div>
+      <div class="row">
+      <% if @restaurant.nearbys.any? %>
+        <h4>Nearby Restaurants You Might Want to Try</h4>
+        <ul>
+          <% for restaurant in @restaurant.nearbys(5).limit(17) %>
+            <li><%= link_to restaurant.name, restaurant %> (<%= restaurant.distance.round(2) %> miles)</li>
+          <% end %>
+        <% end %>
+        </ul>
       </div>
     </div>
-</div>     
-
+    <div class="col-md-8">
+      <div id="map_canvas"></div>
+    </div>
+  </div>     
+</div>
  <script type="text/javascript">
         var handler = Gmaps.build('Google');
         handler.buildMap({
@@ -87,26 +69,4 @@
         }
 
         addCurrentLocation();
-
-    
       </script>
-
-
-<!--To add to user location  {draggable: true} -->
-  <!-- <p>
-    <strong>Latitude:</strong>
-    <%= @restaurant.latitude %>
-  </p>
-
-  <p>
-    <strong>Longitude:</strong>
-    <%= @restaurant.longitude %>
-  </p> -->
-
-  <!-- <p>
-    <strong>Menu:</strong>
-    <%= @restaurant.menu %>
-  </p> -->
-  
-
-</div>

@@ -33,7 +33,7 @@
 <br>
   <div class="container-fluid">
     
-    <div id="map_canvas"></div>
+    <div id="map"></div>
     <div class="restaurant-list">
       <h1><u>Restaurants</u></h1>
       <% @restaurants.each do |restaurant| %>
@@ -67,7 +67,7 @@
               zoomControl: true
             },
             internal: {
-              id: 'map_canvas'
+              id: 'map'
             }
           },
           function(){
