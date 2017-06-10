@@ -17,7 +17,7 @@
       <br>
       <br>
       <p class="text-center">
-         <%= link_to "View Map", restaurants_chicago_path, class: "btn btn-default btn-lg sharp" %></p>
+        <%= link_to 'Search Chicago', restaurants_path(:restaurants_near_chicago => "Chicago"), class: "btn btn-primary-outline btn-lg" %></p>
          <br>
          <br>
       </div>
@@ -32,7 +32,7 @@
     <p class="lead text-center">We are adding more restaurants to other cities, sign up below for updates!</p>
     <!-- Button trigger modal -->
 <div class="text-center">
-  <button type="button" class="btn btn-primary btn-lg sharp" data-toggle="modal" data-target="#myModal">
+  <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
   Sign Up for Updates
   </button>
 </div>
@@ -95,29 +95,45 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <%= link_to image_tag('atlanta.jpg', width: '300', height: '300', alt: 'Atlanta'), restaurants_path(:restaurants_near_atlanta => "Atlanta"), title: 'Chicago Skyline', title: 'coming soon', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('atlanta.jpg', class: "img-responsive",alt: 'Atlanta'), restaurants_path(:restaurants_near_atlanta => "Atlanta"), title: 'Chicago Skyline', title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= link_to image_tag('new-orleans.jpg', width: '300', height: '300', alt: 'New Orleans'), restaurants_path(:restaurants_near_new_orleans => "New Orleans"), title: 'coming soon', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('new-orleans.jpg', class: "img-responsive", alt: 'New Orleans'), restaurants_path(:restaurants_near_new_orleans => "New Orleans"), title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= link_to image_tag('tucson.jpg', width: '300', height: '300', alt: 'Tuscon'), restaurants_path(:restaurants_near_tucson => "Tucson"), title: 'coming soon', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('tucson.jpg', class: "img-responsive", alt: 'Tuscon'), restaurants_path(:restaurants_near_tucson => "Tucson"), title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= link_to image_tag('seattle.jpg', width: '300', height: '300', alt: 'Seattle'), restaurants_path(:restaurants_near_seattle => "Seattle"), title: 'coming soon', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('seattle.jpg', class: "img-responsive", alt: 'Seattle'), restaurants_path(:restaurants_near_seattle => "Seattle"), title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= link_to image_tag('tampa.jpg', width: '300', height: '300', alt: 'Tampa'), restaurants_path(:restaurants_near_tampa => "Tampa"), title: 'coming soon', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('tampa.jpg', class: "img-responsive", alt: 'Tampa'), restaurants_path(:restaurants_near_tampa => "Tampa"), title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= link_to image_tag('indianapolis.jpg', width: '300', height: '300', alt: 'Indianapolis'), restaurants_path(:restaurants_near_indianapolis => "Indianapolis"), title: 'coming soon', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('indianapolis.jpg', class: "img-responsive", alt: 'Indianapolis'), restaurants_path(:restaurants_near_indianapolis => "Indianapolis"), title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= link_to image_tag('birmingham.jpg', width: '300', height: '300', alt: 'Indianapolis'), restaurants_path(:restaurants_near_birmingham => "Birmingham"), title: 'coming soon', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('birmingham.jpg', class: "img-responsive", alt: 'Indianapolis'), restaurants_path(:restaurants_near_birmingham => "Birmingham"), title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <%= link_to image_tag('austin.jpg', width: '300', height: '300', alt: 'Austin'), restaurants_path(:restaurants_near_austin => "Austin"), title: 'Austin', rel: 'tooltip', relative: true %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+      <%= link_to image_tag('austin.jpg', class: "img-responsive", alt: 'Austin'), restaurants_path(:restaurants_near_austin => "Austin"), title: 'Austin', rel: 'tooltip', relative: true %>
+      </div>
     </div>
   </div>
 </div>
@@ -126,8 +142,8 @@
     <br>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <blockquote>
-          <p>I know once people get connected to real food, they never change back. </p>
+        <blockquote class="blockquote blockquote-center">
+          <h3>I know once people get connected to real food, they never change back.</h3>
           <footer>Alice Waters</footer>
         </blockquote>
      </div>

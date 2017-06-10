@@ -22,7 +22,8 @@ body {
 }
 
 html, body {
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 navbar-brand {
@@ -44,44 +45,83 @@ navbar-brand {
       color: white;
     }
 }
-
-#map {
-  width: 100%; 
-  height: 85%;
-  position: absolute;
-  overflow: hidden;
-}
-
-.restaurant-list {
-    min-width: 300px;
-    max-width: 400px;
-    height: 90%;
-    position: absolute;
-    z-index: 1;
-    top: 170px; 
+@media handheld, screen and (max-width: 799px) {
+  #map {
+    width: 100%; 
+    height: 225px;
+  }
+  .restaurant-list {
+    position:absolute;
+    top: 400px;
     left: 35px;
-    background-color: #ffffff;
-    opacity: 0.95;
-    filter: alpha(opacity=50);
-    padding: 10px;
-    overflow: scroll
+    right:0px;
+    bottom:0px;
+    overflow-y:scroll;    
+  }
+}
+@media only screen and (min-width: 800px) {
+    /* For desktop: */
+ #map {
+    width: 100%; 
+    height: 85%;
+    position: absolute;
+    overflow: hidden;
+  }
+  .restaurant-list {
+      min-width: 300px;
+      max-width: 400px;
+      height: 90%;
+      position: absolute;
+      
+      top: 170px; 
+      left: 35px;
+      background-color: #ffffff;
+      opacity: 0.95;
+      filter: alpha(opacity=50);
+      padding: 10px;
+      overflow: scroll
+  }
 }
 #map_canvas {
   width: 100%; 
   height: 500px;
 }
-
+.btn-primary-outline {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+.btn.btn-primary-outline:hover {
+  color: #11101B;
+  background-color: white;
+}
 .btn.sharp {
   border-radius:0;
 }
+.thumbnail {
+  border: none;
+  border-radius: 0 !important;
+  padding: 0px !important;
+}
 
 .footer {
+  width: 100%; // Don't change
+  border-top: 1px solid #F5F5F5;
   background-size: cover;
   background-color: white;
-  padding: 5px;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 30px;
+  background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
 
   p {
-  color: dimgray;
+  color: #4A4A4A;
   }
 }
 

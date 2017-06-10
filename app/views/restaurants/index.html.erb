@@ -2,19 +2,21 @@
 
 <!-- # title would go here
  -->
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-6 col-md-4 col-lg-3">
       <%= form_tag restaurants_path, :method => 'get', class: 'input-group'  do %>
         <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search near an address...' %>
         <span class="input-group-btn">
-          <%= submit_tag "search", class: "btn btn-default sharp" %>
+          <%= submit_tag "search", class: "btn btn-default" %>
         </span>
     <% end %>
   </div>
     <div class="col-md-2">
-      <%= link_to new_restaurant_path, class: "btn btn-success sharp" do %>
-        <span class="glyphicon glyphicon-plus"></span> Add a Restaurant
+      <% if user_signed_in? %>
+        <%= link_to new_restaurant_path, class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-plus"></span> Add a Restaurant
+        <% end %>
       <% end %>
     </div>
   </div><!-- /.row -->
@@ -45,11 +47,11 @@
 
         <%= restaurant.address %><br>
         <br>
-        <%= link_to "More Info", restaurant_path(restaurant), class: "btn btn-success btn-sm sharp" %>
-        <%= link_to "Visit Website", url_with_protocol(restaurant.url), class: "btn btn-success btn-sm sharp", :target => '_blank' %>
+        <%= link_to "More Info", restaurant_path(restaurant), class: "btn btn-success btn-sm" %>
+        <%= link_to "Visit Website", url_with_protocol(restaurant.url), class: "btn btn-success btn-sm", :target => '_blank' %>
           
         <% if user_signed_in? %>
-          <%= link_to 'Edit', edit_restaurant_path(restaurant),class: "btn btn-success btn-sm sharp" %><br>
+          <%= link_to 'Edit', edit_restaurant_path(restaurant),class: "btn btn-success btn-sm" %><br>
         <% end %>
         <% if admin_signed_in? %>
           <%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %><br>
