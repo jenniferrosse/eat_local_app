@@ -95,17 +95,17 @@
     <div class="row">
       <p class="text-center">
 
-        <%= link_to image_tag('atlanta.jpg', width: '300', height: '300', alt: 'Atlanta'), restaurants_atlanta_path, title: 'Chicago Skyline', title: 'coming soon', rel: 'tooltip', relative: true %>
+        <%= link_to image_tag('atlanta.jpg', width: '300', height: '300', alt: 'Atlanta'), restaurants_path(:restaurants_near_atlanta => "Atlanta"), title: 'Chicago Skyline', title: 'coming soon', rel: 'tooltip', relative: true %>
    
-        <%= link_to image_tag('new-orleans.jpg', width: '300', height: '300', alt: 'New Orleans'), restaurants_new_orleans_path, title: 'coming soon', rel: 'tooltip', relative: true %>
+        <%= link_to image_tag('new-orleans.jpg', width: '300', height: '300', alt: 'New Orleans'), restaurants_path(:restaurants_near_new_orleans => "New Orleans"), title: 'coming soon', rel: 'tooltip', relative: true %>
 
-        <%= link_to image_tag('tucson.jpg', width: '300', height: '300', alt: 'Tuscon'), restaurants_tucson_path, title: 'coming soon', rel: 'tooltip', relative: true %>
+        <%= link_to image_tag('tucson.jpg', width: '300', height: '300', alt: 'Tuscon'), restaurants_path(:restaurants_near_tucson => "Tucson"), title: 'coming soon', rel: 'tooltip', relative: true %>
 
-        <%= link_to image_tag('seattle.jpg', width: '300', height: '300', alt: 'Seattle'), restaurants_seattle_path, title: 'coming soon', rel: 'tooltip', relative: true %>
+        <%= link_to image_tag('seattle.jpg', width: '300', height: '300', alt: 'Seattle'), restaurants_path(:restaurants_near_seattle => "Seattle"), title: 'coming soon', rel: 'tooltip', relative: true %>
 
-        <%= link_to image_tag('tampa.jpg', width: '300', height: '300', alt: 'Tampa'), restaurants_tampa_path, title: 'coming soon', rel: 'tooltip', relative: true %>
+        <%= link_to image_tag('tampa.jpg', width: '300', height: '300', alt: 'Tampa'), restaurants_path(:restaurants_near_tampa => "Tampa"), title: 'coming soon', rel: 'tooltip', relative: true %>
 
-        <%= link_to image_tag('indiana.jpg', width: '300', height: '300', alt: 'Indiana'), coming_soon_path, title: 'coming soon', rel: 'tooltip', relative: true %>
+        <%= link_to image_tag('indianapolis.jpg', width: '300', height: '300', alt: 'Indianapolis'), restaurants_path(:restaurants_near_indianapolis => "Indianapolis"), title: 'coming soon', rel: 'tooltip', relative: true %>
 
       </p>
     </div>

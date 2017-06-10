@@ -53,6 +53,8 @@ class RestaurantsController < ApplicationController
       @restaurants = Restaurant.near("New Orleans, LA")
     elsif params[:restaurants_near_tampa]
       @restaurants = Restaurant.near("Tampa, FL")
+    elsif params[:restaurants_near_indianapolis]
+      @restaurants = Restaurant.near("Indianapolis, IN", 120)
     else
      @restaurants = Restaurant.all.order('name ASC')
     end
