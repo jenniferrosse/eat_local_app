@@ -42,7 +42,7 @@ class RestaurantsController < ApplicationController
     # elsif location.present?
     # @restaurants = Restaurant.near([location.latitude, location.longitude], 100)
     elsif params[:restaurants_near_chicago]
-      @restaurants = Restaurant.near("Chicago, IL")
+      @restaurants = Restaurant.near('Chicago, IL', 40)
     elsif params[:restaurants_near_tucson]
       @restaurants = Restaurant.near("Tucson, AZ")
     elsif params[:restaurants_near_atlanta]
