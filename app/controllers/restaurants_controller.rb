@@ -60,7 +60,7 @@ class RestaurantsController < ApplicationController
     elsif params[:restaurants_near_austin]
       @restaurants = Restaurant.near("Austin, TX")
     elsif params[:restaurants_near_phoenix]
-      @restaurants = Restaurant.near("Phoenix, TX")
+      @restaurants = Restaurant.near("Phoenix, AZ")
     else
      @restaurants = Restaurant.all.order('name ASC')
     end
