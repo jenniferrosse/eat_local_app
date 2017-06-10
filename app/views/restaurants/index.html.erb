@@ -1,45 +1,55 @@
 
+
 <!-- # title would go here
  -->
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-
-
-<div class="row">
-  <div class="col-md-1 col-md-offset-1">
-    <%= link_to "Search near me", restaurants_path, class: "btn btn-default sharp pull-right" %>
-  </div><!-- /.col-lg-6 -->
-  <div class="col-md-1 text-center">
-    OR
-  </div>
-  <div class="col-md-4">
-    <%= form_tag restaurants_path, :method => 'get', class: 'input-group'  do %>
-        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search near an address...' %>
-        <span class="input-group-btn">
-          <%= submit_tag "search", class: "btn btn-default sharp" %>
-        </span>
-      <% end %>
-    </div><!-- /input-group -->
-  
-  <div class="col-md-2">
-      <%= link_to new_restaurant_path, class: "btn btn-success" do %>
-        <span class="glyphicon glyphicon-plus"></span> Add a Restaurant
-      <% end %>
+    <div class="col-md-1 col-md-offset-1">
+      <%= link_to "Search near me", restaurants_path, class: "btn btn-default sharp pull-right" %>
+    </div><!-- /.col-lg-6 -->
+    <div class="col-md-1 text-center">
+      OR
     </div>
-</div><!-- /.row -->
-
+    <div class="col-md-4">
+      <%= form_tag restaurants_path, :method => 'get', class: 'input-group'  do %>
+          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search near an address...' %>
+          <span class="input-group-btn">
+            <%= submit_tag "search", class: "btn btn-default sharp" %>
+          </span>
+        <% end %>
+      </div><!-- /input-group -->
     
-  </div>
+    <div class="col-md-2">
+        <%= link_to new_restaurant_path, class: "btn btn-success" do %>
+          <span class="glyphicon glyphicon-plus"></span> Add a Restaurant
+        <% end %>
+      </div>
+  </div><!-- /.row -->
+</div>
+
 <br>
-  <div class="row">
-    <div style='width: 100%;'>
-      <div id="map_canvas"></div>
-    </div>
+<div class="container">
+  <div class="btn-group" role="group" aria-label="...">
+    <%= link_to 'Chicago', restaurants_path(:restaurants_near_chicago => "Chicago"), class: "btn btn-default" %>
+    <%= link_to 'Tucson', restaurants_path(:restaurants_near_tucson => "Tucson"), class: "btn btn-default" %>
+    <%= link_to 'Atlanta', restaurants_path(:restaurants_near_atlanta => "Atlanta"), class: "btn btn-default" %>
+    <%= link_to 'Seattle', restaurants_path(:restaurants_near_seattle => "Seattle"), class: "btn btn-default" %>
+    <%= link_to 'New Orleans', restaurants_path(:restaurants_near_new_orleans => "New Orleans"), class: "btn btn-default" %>
+    <%= link_to 'Tampa', restaurants_path(:restaurants_near_tampa => "Tampa"), class: "btn btn-default" %>
+  </div>
+</div>
+<br>
+<br>
+  <div class="container-fluid">
+    
+    <div id="map_canvas"></div>
     <div class="restaurant-list">
       <% @restaurants.each do |restaurant| %>
 
         <h2><%= restaurant.name %></h2>
+        <% if restaurant.respond_to? :distance %>
         <h4><%= restaurant.distance.round(2) %> miles</h4>
+        <% end %>
 
         <%= restaurant.address %><br>
         <br>
@@ -57,7 +67,7 @@
     </div>  
   </div>
       <script type="text/javascript">
-        handler = Gmaps.build('Google');
+        var handler = Gmaps.build('Google');
         handler.buildMap({
             provider: {
               disableDefaultUI: true,
@@ -70,13 +80,12 @@
           },
           function(){
             markers = handler.addMarkers(<%=raw @arrayOfRestaurants.to_json %>);
-            //handler.bounds.extendWith(markers);
-            //handler.fitMapToBounds();
-            //handler.map.centerOn([41.89, -87.94]);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
 
             // handler.getMap() is the google map object
             // you can also access it with handler.map.getServiceObject()
-            //handler.getMap().setZoom(11);
+            // handler.getMap().setZoom(11);
           }
         );
 
@@ -97,13 +106,13 @@
             });
             //handler.bounds.extendWith(markers);
             //handler.fitMapToBounds();
-            handler.map.centerOn(marker);
-            handler.getMap().setZoom(11);
+            // handler.map.centerOn(marker);
           };
 
           if(navigator && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(displayOnMap);  
           }
+
         }
 
         addCurrentLocation();

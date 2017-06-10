@@ -39,8 +39,20 @@ class RestaurantsController < ApplicationController
 
     if params[:search].present?
      @restaurants = Restaurant.near(params[:search], 15)
-    elsif location.present?
-     @restaurants = Restaurant.near([location.latitude, location.longitude], 100)
+    # elsif location.present?
+    # @restaurants = Restaurant.near([location.latitude, location.longitude], 100)
+    elsif params[:restaurants_near_chicago]
+      @restaurants = Restaurant.near("Chicago, IL")
+    elsif params[:restaurants_near_tucson]
+      @restaurants = Restaurant.near("Tucson, AZ")
+    elsif params[:restaurants_near_atlanta]
+      @restaurants = Restaurant.near("Atlanta, GA")
+    elsif params[:restaurants_near_seattle]
+      @restaurants = Restaurant.near("Seattle, WA")
+    elsif params[:restaurants_near_new_orleans]
+      @restaurants = Restaurant.near("New Orleans, LA")
+    elsif params[:restaurants_near_tampa]
+      @restaurants = Restaurant.near("Tampa, FL")
     else
      @restaurants = Restaurant.all.order('name ASC')
     end
