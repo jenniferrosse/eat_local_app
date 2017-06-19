@@ -54,7 +54,7 @@ class RestaurantsController < ApplicationController
     elsif params[:restaurants_near_tampa]
       @restaurants = Restaurant.near("Tampa, FL")
     elsif params[:restaurants_near_indianapolis]
-      @restaurants = Restaurant.near("Indianapolis, IN", 120)
+      @restaurants = Restaurant.near("Indianapolis, IN")
     elsif params[:restaurants_near_birmingham]
       @restaurants = Restaurant.near("Birmingham, AL", 120)
     elsif params[:restaurants_near_austin]
