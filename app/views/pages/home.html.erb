@@ -102,6 +102,11 @@
     </div>
     <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
       <div class="thumbnail">
+      <%= link_to image_tag('charlotte.jpg', class: "img-responsive", alt: 'Charlotte'), restaurants_path(:restaurants_near_charlotte => "Charlotte"), title: 'coming soon', rel: 'tooltip', relative: true %>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+      <div class="thumbnail">
       <%= link_to image_tag('new-orleans.jpg', class: "img-responsive", alt: 'New Orleans'), restaurants_path(:restaurants_near_new_orleans => "New Orleans"), title: 'coming soon', rel: 'tooltip', relative: true %>
       </div>
     </div>
