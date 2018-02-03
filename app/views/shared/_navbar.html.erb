@@ -19,15 +19,16 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search Other Cites <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'Tucson', restaurants_path(:restaurants_near_tucson => "Tucson") %></li>
-            <li><%= link_to 'Atlanta', restaurants_path(:restaurants_near_atlanta => "Atlanta") %></li>
-            <li><%= link_to 'Seattle', restaurants_path(:restaurants_near_seattle => "Seattle") %></li>
-            <li><%= link_to 'New Orleans', restaurants_path(:restaurants_near_new_orleans => "New Orleans") %></li>
-            <li><%= link_to 'Tampa', restaurants_path(:restaurants_near_tampa => "Tampa") %></li>
-            <li><%= link_to 'Indianapolis', restaurants_path(:restaurants_near_indianapolis => "Indianapolis") %></li>
-            <li><%= link_to 'Birmingham', restaurants_path(:restaurants_near_birmingham => "Birmingham") %></li>
-            <li><%= link_to 'Austin', restaurants_path(:restaurants_near_austin => "Austin") %></li>
-            <li><%= link_to 'Phoenix', restaurants_path(:restaurants_near_phoenix => "Phoenix") %></li>
+            <li><%= link_to 'Atlanta, GA', restaurants_path(:restaurants_near_atlanta => "Atlanta") %></li>
+            <li><%= link_to 'Austin, TX', restaurants_path(:restaurants_near_austin => "Austin") %></li>
+            <li><%= link_to 'Birmingham, IN', restaurants_path(:restaurants_near_birmingham => "Birmingham") %></li>
+            <li><%= link_to 'Charlotte, NC', restaurants_path(:restaurants_near_charlotte => "Charlotte") %></li>
+            <li><%= link_to 'Indianapolis, IN', restaurants_path(:restaurants_near_indianapolis => "Indianapolis") %></li>
+            <li><%= link_to 'New Orleans, LA', restaurants_path(:restaurants_near_new_orleans => "New Orleans") %></li>
+            <li><%= link_to 'Phoenix, AZ', restaurants_path(:restaurants_near_phoenix => "Phoenix") %></li>
+            <li><%= link_to 'Seattle, WA', restaurants_path(:restaurants_near_seattle => "Seattle") %></li>
+            <li><%= link_to 'Tampa, FL', restaurants_path(:restaurants_near_tampa => "Tampa") %></li>
+            <li><%= link_to 'Tucson, AZ', restaurants_path(:restaurants_near_tucson => "Tucson") %></li> 
             <li role="separator" class="divider"></li>
             <li><%= link_to "All Restaurants", restaurants_path %></li>
           </ul>
