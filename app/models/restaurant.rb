@@ -1,4 +1,4 @@
-class Restaurant < ActiveRecord::Base
+class Restaurant < ApplicationRecord
 	# attr_accessible :address, :latitude, :longitude
   validates :name, :address, presence: true
   validates :name, :address, uniqueness: true
